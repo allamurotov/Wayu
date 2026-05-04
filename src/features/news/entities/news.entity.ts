@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, Index } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { NewsCategory } from '../news-categories/entities/news-category.entity';
 import { Country } from '../countries/entities/country.entity';
 import { NewsTag } from '../news-tags/entities/news-tag.entity';
@@ -9,26 +9,31 @@ export class News {
   id: number;
 
   @Column()
-  @Index()
   categoryId: number;
 
   @Column({ nullable: true })
-  @Index()
   countryId: number;
 
-  @Column({ type: 'varchar', length: 256 })
-  @Index()
+  @Column({ type: 'varchar', length: 200 })
   title: string;
 
-  @Column({ type: 'varchar', length: 128 })
+  @Column({ type: 'varchar', length: 200 })
   image: string;
 
   @Column({ type: 'date' })
-  @Index()
   date: Date;
 
   @Column({ type: 'text' })
   content: string;
+
+  @Column({ type: 'varchar', length: 50, nullable: true })
+  author: string;
+
+  @Column({ type: 'int', default: 0 })
+  views: number;
+
+  @Column({ type: 'boolean', default: false })
+  published: boolean;
 
   @ManyToOne(() => NewsCategory, (category) => category.news)
   category: NewsCategory;

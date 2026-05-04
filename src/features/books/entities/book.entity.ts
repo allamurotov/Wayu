@@ -13,23 +13,32 @@ export class Book {
   @Column()
   categoryId: number;
 
-  @Column({ type: 'varchar', length: 256 })
+  @Column({ type: 'varchar', length: 200 })
   title: string;
 
-  @Column({ type: 'varchar', length: 128 })
-  image: string;
+  @Column({ type: 'varchar', length: 200 })
+  coverImage: string;
 
   @Column({ type: 'text', nullable: true })
-  description: string;
+  summary: string;
 
-  @Column({ type: 'varchar', length: 256 })
-  file: string;
-
-  @Column({ type: 'int' })
-  pages: number;
+  @Column({ type: 'varchar', length: 200 })
+  pdfFile: string;
 
   @Column({ type: 'int' })
-  year: number;
+  pageCount: number;
+
+  @Column({ type: 'int' })
+  publishYear: number;
+
+  @Column({ type: 'varchar', length: 50, nullable: true })
+  isbn: string;
+
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  publisher: string;
+
+  @Column({ type: 'int', default: 0 })
+  downloads: number;
 
   @ManyToOne(() => Author, (author) => author.books)
   author: Author;

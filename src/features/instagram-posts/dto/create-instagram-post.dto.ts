@@ -12,6 +12,5 @@ export class CreateInstagramPostDto {
   @IsString()
   @IsNotEmpty()
   @MaxLength(128)
-  
   link: string;
 }

@@ -7,17 +7,17 @@ export class Vacancy {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 256 })
+  @Column({ type: 'varchar', length: 200 })
   title: string;
 
-  @Column({ type: 'varchar', length: 128 })
-  address: string;
+  @Column({ type: 'varchar', length: 150 })
+  location: string;
 
   @Column({ type: 'text' })
   description: string;
 
-  @Column({ type: 'varchar', length: 16 })
-  phoneNumber: string;
+  @Column({ type: 'varchar', length: 20 })
+  contact: string;
 
   @Column({
     type: 'enum',
@@ -25,11 +25,17 @@ export class Vacancy {
   })
   type: VacancyType;
 
-  @Column({ type: 'varchar', length: 64 })
-  salary: string;
+  @Column({ type: 'varchar', length: 100 })
+  salaryRange: string;
 
   @Column({ type: 'boolean', default: true })
   isActive: boolean;
+
+  @Column({ type: 'date', nullable: true })
+  deadline: Date;
+
+  @Column({ type: 'int', default: 0 })
+  applicantCount: number;
 
   @OneToMany(() => Application, (application) => application.vacancy)
   applications: Application[];
