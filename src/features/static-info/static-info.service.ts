@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { StaticInfo } from './entities/static-info.entity';
@@ -12,54 +12,25 @@ export class StaticInfoService {
     private staticInfoRepository: Repository<StaticInfo>,
   ) {}
 
-  async create(createStaticInfoDto: CreateStaticInfoDto): Promise<StaticInfo> {
-    // Check if static info already exists (singleton pattern)
-    const existingCount = await this.staticInfoRepository.count();
-    if (existingCount > 0) {
-      throw new ConflictException('Static info already exists. Only one record is allowed.');
-    }
-
+  create(createStaticInfoDto: CreateStaticInfoDto): Promise<StaticInfo> {
     const staticInfo = this.staticInfoRepository.create(createStaticInfoDto);
     return this.staticInfoRepository.save(staticInfo);
   }
 
-  async findAll(): Promise<StaticInfo[]> {
+  findAll(): Promise<StaticInfo[]> {
     return this.staticInfoRepository.find();
   }
 
-  async findOne(id: number): Promise<StaticInfo> {
-    return this.staticInfoRepository.findOneBy({ id });
+  findOne(id: number): Promise<StaticInfo | null> {
+    return this.staticInfoRepository.findOne({ where: { id } });
   }
 
-  async getSingleton(): Promise<StaticInfo> {
-    const staticInfo = await this.staticInfoRepository.findOne({ 
-      where: {}, 
-      order: { id: 'ASC' } 
-    });
-    
-    if (!staticInfo) {
-      throw new NotFoundException('Static info not found. Please create one first.');
-    }
-    
-    return staticInfo;
-  }
-
-  async update(id: number, updateStaticInfoDto: UpdateStaticInfoDto): Promise<StaticInfo> {
-    await this.staticInfoRepository.update(id, updateStaticInfoDto);
+  update(id: number, updateStaticInfoDto: UpdateStaticInfoDto): Promise<StaticInfo | null> {
+    this.staticInfoRepository.update(id, updateStaticInfoDto);
     return this.findOne(id);
   }
 
-  async updateSingleton(updateStaticInfoDto: UpdateStaticInfoDto): Promise<StaticInfo> {
-    const staticInfo = await this.getSingleton();
-    await this.staticInfoRepository.update(staticInfo.id, updateStaticInfoDto);
-    return this.findOne(staticInfo.id);
-  }
-
-  async remove(id: number): Promise<void> {
-    await this.staticInfoRepository.delete(id);
-  }
-
-  async resetSingleton(): Promise<void> {
-    await this.staticInfoRepository.delete({});
+  remove(id: number): Promise<void> {
+    return this.staticInfoRepository.delete(id).then(() => {});
   }
 }

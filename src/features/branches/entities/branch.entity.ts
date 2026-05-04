@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Country } from '../countries/entities/country.entity';
-import { Representative } from '../representatives/entities/representative.entity';
+import { Country } from '../../countries/entities/country.entity';
+import { Representative } from '../../representatives/entities/representative.entity';
 
 @Entity('branches')
 export class Branch {

@@ -21,11 +21,11 @@ export class SocialLinksService {
     return this.socialLinksRepository.find();
   }
 
-  async findOne(id: number): Promise<SocialLink> {
+  async findOne(id: number): Promise<SocialLink | null> {
     return this.socialLinksRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateSocialLinkDto: UpdateSocialLinkDto): Promise<SocialLink> {
+  async update(id: number, updateSocialLinkDto: UpdateSocialLinkDto): Promise<SocialLink | null> {
     await this.socialLinksRepository.update(id, updateSocialLinkDto);
     return this.findOne(id);
   }

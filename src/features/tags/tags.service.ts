@@ -19,18 +19,18 @@ export class TagsService {
 
   async findAll(): Promise<Tag[]> {
     return this.tagsRepository.find({ 
-      relations: ['newsTags', 'newsTags.news', 'faqTags', 'faqTags.faq'] 
+      relations: ['news', 'faqs'] 
     });
   }
 
-  async findOne(id: number): Promise<Tag> {
+  async findOne(id: number): Promise<Tag | null> {
     return this.tagsRepository.findOne({ 
       where: { id }, 
-      relations: ['newsTags', 'newsTags.news', 'faqTags', 'faqTags.faq'] 
+      relations: ['news', 'faqs'] 
     });
   }
 
-  async update(id: number, updateTagDto: UpdateTagDto): Promise<Tag> {
+  async update(id: number, updateTagDto: UpdateTagDto): Promise<Tag | null> {
     await this.tagsRepository.update(id, updateTagDto);
     return this.findOne(id);
   }

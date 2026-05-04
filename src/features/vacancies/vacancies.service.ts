@@ -21,14 +21,14 @@ export class VacanciesService {
     return this.vacanciesRepository.find({ relations: ['applications'] });
   }
 
-  async findOne(id: number): Promise<Vacancy> {
+  async findOne(id: number): Promise<Vacancy | null> {
     return this.vacanciesRepository.findOne({ 
       where: { id }, 
       relations: ['applications'] 
     });
   }
 
-  async update(id: number, updateVacancyDto: UpdateVacancyDto): Promise<Vacancy> {
+  async update(id: number, updateVacancyDto: UpdateVacancyDto): Promise<Vacancy | null> {
     await this.vacanciesRepository.update(id, updateVacancyDto);
     return this.findOne(id);
   }

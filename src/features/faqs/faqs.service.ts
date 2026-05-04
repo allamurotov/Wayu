@@ -19,18 +19,18 @@ export class FaqsService {
 
   async findAll(): Promise<Faq[]> {
     return this.faqsRepository.find({ 
-      relations: ['faqTags', 'faqTags.tag'] 
+      relations: ['tags'] 
     });
   }
 
-  async findOne(id: number): Promise<Faq> {
+  async findOne(id: number): Promise<Faq | null> {
     return this.faqsRepository.findOne({ 
       where: { id }, 
-      relations: ['faqTags', 'faqTags.tag'] 
+      relations: ['tags'] 
     });
   }
 
-  async update(id: number, updateFaqDto: UpdateFaqDto): Promise<Faq> {
+  async update(id: number, updateFaqDto: UpdateFaqDto): Promise<Faq | null> {
     await this.faqsRepository.update(id, updateFaqDto);
     return this.findOne(id);
   }

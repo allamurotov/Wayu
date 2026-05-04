@@ -1,24 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { NewsTag } from '../news-tags/entities/news-tag.entity';
-import { FaqTag } from '../faq-tags/entities/faq-tag.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { News } from '../../news/entities/news.entity';
+import { Faq } from '../../faqs/entities/faq.entity';
 
 @Entity('tags')
 export class Tag {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 50, unique: true })
-  name: string;
+  @Column({ type: 'varchar', length: 64, unique: true })
+  title: string;
 
-  @Column({ type: 'varchar', length: 20, nullable: true })
-  color: string;
+  @ManyToMany(() => News, (news) => news.tags)
+  news: News[];
 
-  @Column({ type: 'int', default: 0 })
-  usageCount: number;
-
-  @OneToMany(() => NewsTag, (newsTag) => newsTag.tag)
-  newsTags: NewsTag[];
-
-  @OneToMany(() => FaqTag, (faqTag) => faqTag.tag)
-  faqTags: FaqTag[];
+  @ManyToMany(() => Faq, (faq) => faq.tags)
+  faqs: Faq[];
 }

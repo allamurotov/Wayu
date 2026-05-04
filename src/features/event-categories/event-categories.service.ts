@@ -21,11 +21,11 @@ export class EventCategoriesService {
     return this.eventCategoriesRepository.find();
   }
 
-  async findOne(id: number): Promise<EventCategory> {
+  async findOne(id: number): Promise<EventCategory | null> {
     return this.eventCategoriesRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateEventCategoryDto: UpdateEventCategoryDto): Promise<EventCategory> {
+  async update(id: number, updateEventCategoryDto: UpdateEventCategoryDto): Promise<EventCategory | null> {
     await this.eventCategoriesRepository.update(id, updateEventCategoryDto);
     return this.findOne(id);
   }

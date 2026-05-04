@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
-import { NewsCategory } from '../news-categories/entities/news-category.entity';
-import { Country } from '../countries/entities/country.entity';
-import { NewsTag } from '../news-tags/entities/news-tag.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
+import { NewsCategory } from '../../news-categories/entities/news-category.entity';
+import { Country } from '../../countries/entities/country.entity';
+import { Tag } from '../../tags/entities/tag.entity';
 
 @Entity('news')
 export class News {
@@ -14,10 +14,10 @@ export class News {
   @Column({ nullable: true })
   countryId: number;
 
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 256 })
   title: string;
 
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 128 })
   image: string;
 
   @Column({ type: 'date' })
@@ -26,21 +26,17 @@ export class News {
   @Column({ type: 'text' })
   content: string;
 
-  @Column({ type: 'varchar', length: 50, nullable: true })
-  author: string;
-
-  @Column({ type: 'int', default: 0 })
-  views: number;
-
-  @Column({ type: 'boolean', default: false })
-  published: boolean;
-
   @ManyToOne(() => NewsCategory, (category) => category.news)
   category: NewsCategory;
 
   @ManyToOne(() => Country, (country) => country.news)
   country: Country;
 
-  @OneToMany(() => NewsTag, (newsTag) => newsTag.news)
-  newsTags: NewsTag[];
+  @ManyToMany(() => Tag)
+  @JoinTable({
+    name: 'newsTags',
+    joinColumn: { name: 'newsId' },
+    inverseJoinColumn: { name: 'tagId' },
+  })
+  tags: Tag[];
 }

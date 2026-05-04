@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Branch } from '../branches/entities/branch.entity';
+import { Branch } from '../../branches/entities/branch.entity';
 
 @Entity('representatives')
 export class Representative {

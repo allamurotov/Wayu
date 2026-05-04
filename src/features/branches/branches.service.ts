@@ -21,14 +21,14 @@ export class BranchesService {
     return this.branchesRepository.find({ relations: ['country', 'representative'] });
   }
 
-  async findOne(id: number): Promise<Branch> {
+  async findOne(id: number): Promise<Branch | null> {
     return this.branchesRepository.findOne({ 
       where: { id }, 
       relations: ['country', 'representative'] 
     });
   }
 
-  async update(id: number, updateBranchDto: UpdateBranchDto): Promise<Branch> {
+  async update(id: number, updateBranchDto: UpdateBranchDto): Promise<Branch | null> {
     await this.branchesRepository.update(id, updateBranchDto);
     return this.findOne(id);
   }

@@ -21,14 +21,14 @@ export class EventsService {
     return this.eventsRepository.find({ relations: ['category'] });
   }
 
-  async findOne(id: number): Promise<Event> {
+  async findOne(id: number): Promise<Event | null> {
     return this.eventsRepository.findOne({ 
       where: { id }, 
       relations: ['category'] 
     });
   }
 
-  async update(id: number, updateEventDto: UpdateEventDto): Promise<Event> {
+  async update(id: number, updateEventDto: UpdateEventDto): Promise<Event | null> {
     await this.eventsRepository.update(id, updateEventDto);
     return this.findOne(id);
   }

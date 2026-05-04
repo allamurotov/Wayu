@@ -21,11 +21,11 @@ export class LanguagesService {
     return this.languagesRepository.find();
   }
 
-  async findOne(id: number): Promise<Language> {
+  async findOne(id: number): Promise<Language | null> {
     return this.languagesRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateLanguageDto: UpdateLanguageDto): Promise<Language> {
+  async update(id: number, updateLanguageDto: UpdateLanguageDto): Promise<Language | null> {
     await this.languagesRepository.update(id, updateLanguageDto);
     return this.findOne(id);
   }

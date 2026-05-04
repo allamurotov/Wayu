@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Index } from 'typeorm';
-import { News } from '../news/entities/news.entity';
-import { Branch } from '../branches/entities/branch.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { News } from '../../news/entities/news.entity';
+import { Branch } from '../../branches/entities/branch.entity';
 
 @Entity('countries')
 export class Country {
@@ -8,7 +8,6 @@ export class Country {
   id: number;
 
   @Column({ type: 'varchar', length: 64, unique: true })
-  @Index()
   title: string;
 
   @Column({ type: 'varchar', length: 128 })

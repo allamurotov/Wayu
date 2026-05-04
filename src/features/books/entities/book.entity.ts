@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Author } from '../authors/entities/author.entity';
-import { BookCategory } from '../book-categories/entities/book-category.entity';
+import { Author } from '../../authors/entities/author.entity';
+import { BookCategory } from '../../book-categories/entities/book-category.entity';
 
 @Entity('books')
 export class Book {
@@ -13,32 +13,23 @@ export class Book {
   @Column()
   categoryId: number;
 
-  @Column({ type: 'varchar', length: 200 })
+  @Column({ type: 'varchar', length: 256 })
   title: string;
 
-  @Column({ type: 'varchar', length: 200 })
-  coverImage: string;
+  @Column({ type: 'varchar', length: 128 })
+  image: string;
 
   @Column({ type: 'text', nullable: true })
-  summary: string;
+  description: string;
 
-  @Column({ type: 'varchar', length: 200 })
-  pdfFile: string;
-
-  @Column({ type: 'int' })
-  pageCount: number;
+  @Column({ type: 'varchar', length: 256 })
+  file: string;
 
   @Column({ type: 'int' })
-  publishYear: number;
+  pages: number;
 
-  @Column({ type: 'varchar', length: 50, nullable: true })
-  isbn: string;
-
-  @Column({ type: 'varchar', length: 100, nullable: true })
-  publisher: string;
-
-  @Column({ type: 'int', default: 0 })
-  downloads: number;
+  @Column({ type: 'int' })
+  year: number;
 
   @ManyToOne(() => Author, (author) => author.books)
   author: Author;

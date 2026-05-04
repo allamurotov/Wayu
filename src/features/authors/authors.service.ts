@@ -21,11 +21,11 @@ export class AuthorsService {
     return this.authorsRepository.find();
   }
 
-  async findOne(id: number): Promise<Author> {
+  async findOne(id: number): Promise<Author | null> {
     return this.authorsRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateAuthorDto: UpdateAuthorDto): Promise<Author> {
+  async update(id: number, updateAuthorDto: UpdateAuthorDto): Promise<Author | null> {
     await this.authorsRepository.update(id, updateAuthorDto);
     return this.findOne(id);
   }

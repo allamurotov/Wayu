@@ -21,14 +21,14 @@ export class BooksService {
     return this.booksRepository.find({ relations: ['author', 'category'] });
   }
 
-  async findOne(id: number): Promise<Book> {
+  async findOne(id: number): Promise<Book | null> {
     return this.booksRepository.findOne({ 
       where: { id }, 
       relations: ['author', 'category'] 
     });
   }
 
-  async update(id: number, updateBookDto: UpdateBookDto): Promise<Book> {
+  async update(id: number, updateBookDto: UpdateBookDto): Promise<Book | null> {
     await this.booksRepository.update(id, updateBookDto);
     return this.findOne(id);
   }

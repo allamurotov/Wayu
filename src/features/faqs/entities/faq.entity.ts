@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { FaqTag } from '../faq-tags/entities/faq-tag.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Tag } from '../../tags/entities/tag.entity';
 
 @Entity('faqs')
 export class Faq {
@@ -12,6 +12,11 @@ export class Faq {
   @Column({ type: 'varchar', length: 512 })
   answer: string;
 
-  @OneToMany(() => FaqTag, (faqTag) => faqTag.faq)
-  faqTags: FaqTag[];
+  @ManyToMany(() => Tag)
+  @JoinTable({
+    name: 'faqsTags',
+    joinColumn: { name: 'faqId' },
+    inverseJoinColumn: { name: 'tagId' },
+  })
+  tags: Tag[];
 }

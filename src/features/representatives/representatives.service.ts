@@ -21,11 +21,11 @@ export class RepresentativesService {
     return this.representativesRepository.find();
   }
 
-  async findOne(id: number): Promise<Representative> {
+  async findOne(id: number): Promise<Representative | null> {
     return this.representativesRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateRepresentativeDto: UpdateRepresentativeDto): Promise<Representative> {
+  async update(id: number, updateRepresentativeDto: UpdateRepresentativeDto): Promise<Representative | null> {
     await this.representativesRepository.update(id, updateRepresentativeDto);
     return this.findOne(id);
   }

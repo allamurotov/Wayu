@@ -21,11 +21,11 @@ export class UsefulLinksService {
     return this.usefulLinksRepository.find();
   }
 
-  async findOne(id: number): Promise<UsefulLink> {
+  async findOne(id: number): Promise<UsefulLink | null> {
     return this.usefulLinksRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateUsefulLinkDto: UpdateUsefulLinkDto): Promise<UsefulLink> {
+  async update(id: number, updateUsefulLinkDto: UpdateUsefulLinkDto): Promise<UsefulLink | null> {
     await this.usefulLinksRepository.update(id, updateUsefulLinkDto);
     return this.findOne(id);
   }

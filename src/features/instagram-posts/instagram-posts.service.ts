@@ -21,11 +21,11 @@ export class InstagramPostsService {
     return this.instagramPostsRepository.find();
   }
 
-  async findOne(id: number): Promise<InstagramPost> {
+  async findOne(id: number): Promise<InstagramPost | null> {
     return this.instagramPostsRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateInstagramPostDto: UpdateInstagramPostDto): Promise<InstagramPost> {
+  async update(id: number, updateInstagramPostDto: UpdateInstagramPostDto): Promise<InstagramPost | null> {
     await this.instagramPostsRepository.update(id, updateInstagramPostDto);
     return this.findOne(id);
   }
