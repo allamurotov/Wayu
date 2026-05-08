@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
@@ -12,28 +20,44 @@ export class BooksController {
 
   @Post()
   @ApiOperation({ summary: 'Create book' })
-  @ApiResponse({ status: 201, description: 'Book created successfully', type: Book })
+  @ApiResponse({
+    status: 201,
+    description: 'Book created successfully',
+    type: Book,
+  })
   create(@Body() createBookDto: CreateBookDto) {
     return this.booksService.create(createBookDto);
   }
 
   @Get()
   @ApiOperation({ summary: 'Get all books' })
-  @ApiResponse({ status: 200, description: 'Books retrieved successfully', type: [Book] })
+  @ApiResponse({
+    status: 200,
+    description: 'Books retrieved successfully',
+    type: [Book],
+  })
   findAll() {
     return this.booksService.findAll();
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get book by ID' })
-  @ApiResponse({ status: 200, description: 'Book retrieved successfully', type: Book })
+  @ApiResponse({
+    status: 200,
+    description: 'Book retrieved successfully',
+    type: Book,
+  })
   findOne(@Param('id') id: string) {
     return this.booksService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update book' })
-  @ApiResponse({ status: 200, description: 'Book updated successfully', type: Book })
+  @ApiResponse({
+    status: 200,
+    description: 'Book updated successfully',
+    type: Book,
+  })
   update(@Param('id') id: string, @Body() updateBookDto: UpdateBookDto) {
     return this.booksService.update(+id, updateBookDto);
   }

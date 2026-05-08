@@ -22,13 +22,16 @@ export class VacanciesService {
   }
 
   async findOne(id: number): Promise<Vacancy | null> {
-    return this.vacanciesRepository.findOne({ 
-      where: { id }, 
-      relations: ['applications'] 
+    return this.vacanciesRepository.findOne({
+      where: { id },
+      relations: ['applications'],
     });
   }
 
-  async update(id: number, updateVacancyDto: UpdateVacancyDto): Promise<Vacancy | null> {
+  async update(
+    id: number,
+    updateVacancyDto: UpdateVacancyDto,
+  ): Promise<Vacancy | null> {
     await this.vacanciesRepository.update(id, updateVacancyDto);
     return this.findOne(id);
   }

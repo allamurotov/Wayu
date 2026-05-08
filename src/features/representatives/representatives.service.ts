@@ -12,8 +12,12 @@ export class RepresentativesService {
     private representativesRepository: Repository<Representative>,
   ) {}
 
-  async create(createRepresentativeDto: CreateRepresentativeDto): Promise<Representative> {
-    const representative = this.representativesRepository.create(createRepresentativeDto);
+  async create(
+    createRepresentativeDto: CreateRepresentativeDto,
+  ): Promise<Representative> {
+    const representative = this.representativesRepository.create(
+      createRepresentativeDto,
+    );
     return this.representativesRepository.save(representative);
   }
 
@@ -25,7 +29,10 @@ export class RepresentativesService {
     return this.representativesRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateRepresentativeDto: UpdateRepresentativeDto): Promise<Representative | null> {
+  async update(
+    id: number,
+    updateRepresentativeDto: UpdateRepresentativeDto,
+  ): Promise<Representative | null> {
     await this.representativesRepository.update(id, updateRepresentativeDto);
     return this.findOne(id);
   }

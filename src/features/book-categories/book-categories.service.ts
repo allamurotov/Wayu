@@ -12,8 +12,12 @@ export class BookCategoriesService {
     private bookCategoriesRepository: Repository<BookCategory>,
   ) {}
 
-  async create(createBookCategoryDto: CreateBookCategoryDto): Promise<BookCategory> {
-    const bookCategory = this.bookCategoriesRepository.create(createBookCategoryDto);
+  async create(
+    createBookCategoryDto: CreateBookCategoryDto,
+  ): Promise<BookCategory> {
+    const bookCategory = this.bookCategoriesRepository.create(
+      createBookCategoryDto,
+    );
     return this.bookCategoriesRepository.save(bookCategory);
   }
 
@@ -25,7 +29,10 @@ export class BookCategoriesService {
     return this.bookCategoriesRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateBookCategoryDto: UpdateBookCategoryDto): Promise<BookCategory | null> {
+  async update(
+    id: number,
+    updateBookCategoryDto: UpdateBookCategoryDto,
+  ): Promise<BookCategory | null> {
     await this.bookCategoriesRepository.update(id, updateBookCategoryDto);
     return this.findOne(id);
   }

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateVacancyCommand } from './commands/create-vacancy.command';
 import { UpdateVacancyCommand } from './commands/update-vacancy.command';
@@ -32,7 +40,9 @@ export class AdminVacanciesController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateVacancyDto: UpdateVacancyDto) {
-    return this.commandBus.execute(new UpdateVacancyCommand(+id, updateVacancyDto));
+    return this.commandBus.execute(
+      new UpdateVacancyCommand(+id, updateVacancyDto),
+    );
   }
 
   @Delete(':id')

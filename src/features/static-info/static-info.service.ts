@@ -25,7 +25,10 @@ export class StaticInfoService {
     return this.staticInfoRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateStaticInfoDto: UpdateStaticInfoDto): Promise<StaticInfo | null> {
+  update(
+    id: number,
+    updateStaticInfoDto: UpdateStaticInfoDto,
+  ): Promise<StaticInfo | null> {
     this.staticInfoRepository.update(id, updateStaticInfoDto);
     return this.findOne(id);
   }

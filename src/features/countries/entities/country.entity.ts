@@ -1,6 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { News } from '../../news/entities/news.entity';
-import { Branch } from '../../branches/entities/branch.entity';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('countries')
 export class Country {
@@ -12,10 +10,4 @@ export class Country {
 
   @Column({ type: 'varchar', length: 128 })
   flag: string;
-
-  @OneToMany(() => News, (news) => news.country)
-  news: News[];
-
-  @OneToMany(() => Branch, (branch) => branch.country)
-  branches: Branch[];
 }

@@ -25,7 +25,10 @@ export class SocialLinksService {
     return this.socialLinksRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateSocialLinkDto: UpdateSocialLinkDto): Promise<SocialLink | null> {
+  async update(
+    id: number,
+    updateSocialLinkDto: UpdateSocialLinkDto,
+  ): Promise<SocialLink | null> {
     await this.socialLinksRepository.update(id, updateSocialLinkDto);
     return this.findOne(id);
   }

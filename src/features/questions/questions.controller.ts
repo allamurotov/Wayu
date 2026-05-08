@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
@@ -12,29 +20,48 @@ export class QuestionsController {
 
   @Post()
   @ApiOperation({ summary: 'Create question' })
-  @ApiResponse({ status: 201, description: 'Question created successfully', type: Question })
+  @ApiResponse({
+    status: 201,
+    description: 'Question created successfully',
+    type: Question,
+  })
   create(@Body() createQuestionDto: CreateQuestionDto) {
     return this.questionsService.create(createQuestionDto);
   }
 
   @Get()
   @ApiOperation({ summary: 'Get all questions' })
-  @ApiResponse({ status: 200, description: 'Questions retrieved successfully', type: [Question] })
+  @ApiResponse({
+    status: 200,
+    description: 'Questions retrieved successfully',
+    type: [Question],
+  })
   findAll() {
     return this.questionsService.findAll();
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get question by ID' })
-  @ApiResponse({ status: 200, description: 'Question retrieved successfully', type: Question })
+  @ApiResponse({
+    status: 200,
+    description: 'Question retrieved successfully',
+    type: Question,
+  })
   findOne(@Param('id') id: string) {
     return this.questionsService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update question' })
-  @ApiResponse({ status: 200, description: 'Question updated successfully', type: Question })
-  update(@Param('id') id: string, @Body() updateQuestionDto: UpdateQuestionDto) {
+  @ApiResponse({
+    status: 200,
+    description: 'Question updated successfully',
+    type: Question,
+  })
+  update(
+    @Param('id') id: string,
+    @Body() updateQuestionDto: UpdateQuestionDto,
+  ) {
     return this.questionsService.update(+id, updateQuestionDto);
   }
 

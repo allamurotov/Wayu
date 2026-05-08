@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { StaticInfoService } from './static-info.service';
 import { CreateStaticInfoDto } from './dto/create-static-info.dto';
 import { UpdateStaticInfoDto } from './dto/update-static-info.dto';
@@ -23,7 +31,10 @@ export class StaticInfoController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStaticInfoDto: UpdateStaticInfoDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateStaticInfoDto: UpdateStaticInfoDto,
+  ) {
     return this.staticInfoService.update(+id, updateStaticInfoDto);
   }
 

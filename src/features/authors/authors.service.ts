@@ -25,7 +25,10 @@ export class AuthorsService {
     return this.authorsRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateAuthorDto: UpdateAuthorDto): Promise<Author | null> {
+  async update(
+    id: number,
+    updateAuthorDto: UpdateAuthorDto,
+  ): Promise<Author | null> {
     await this.authorsRepository.update(id, updateAuthorDto);
     return this.findOne(id);
   }

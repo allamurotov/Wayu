@@ -1,6 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Author } from '../../authors/entities/author.entity';
-import { BookCategory } from '../../book-categories/entities/book-category.entity';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('books')
 export class Book {
@@ -30,10 +28,4 @@ export class Book {
 
   @Column({ type: 'int' })
   year: number;
-
-  @ManyToOne(() => Author, (author) => author.books)
-  author: Author;
-
-  @ManyToOne(() => BookCategory, (category) => category.books)
-  category: BookCategory;
 }

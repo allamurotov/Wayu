@@ -5,7 +5,15 @@ export async function teardownTestApp(
   app: INestApplication,
   dataSource: DataSource,
 ) {
-  await dataSource.dropDatabase();
-  await dataSource.destroy();
-  await app.close();
+  try {
+    if (dataSource) {
+      await dataSource.dropDatabase();
+      await dataSource.destroy();
+    }
+    if (app) {
+      await app.close();
+    }
+  } catch (error) {
+    // Ignore teardown errors
+  }
 }

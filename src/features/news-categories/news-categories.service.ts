@@ -12,8 +12,12 @@ export class NewsCategoriesService {
     private newsCategoriesRepository: Repository<NewsCategory>,
   ) {}
 
-  async create(createNewsCategoryDto: CreateNewsCategoryDto): Promise<NewsCategory> {
-    const newsCategory = this.newsCategoriesRepository.create(createNewsCategoryDto);
+  async create(
+    createNewsCategoryDto: CreateNewsCategoryDto,
+  ): Promise<NewsCategory> {
+    const newsCategory = this.newsCategoriesRepository.create(
+      createNewsCategoryDto,
+    );
     return this.newsCategoriesRepository.save(newsCategory);
   }
 
@@ -25,7 +29,10 @@ export class NewsCategoriesService {
     return this.newsCategoriesRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateNewsCategoryDto: UpdateNewsCategoryDto): Promise<NewsCategory | null> {
+  async update(
+    id: number,
+    updateNewsCategoryDto: UpdateNewsCategoryDto,
+  ): Promise<NewsCategory | null> {
     await this.newsCategoriesRepository.update(id, updateNewsCategoryDto);
     return this.findOne(id);
   }

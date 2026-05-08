@@ -12,8 +12,12 @@ export class InstagramPostsService {
     private instagramPostsRepository: Repository<InstagramPost>,
   ) {}
 
-  async create(createInstagramPostDto: CreateInstagramPostDto): Promise<InstagramPost> {
-    const instagramPost = this.instagramPostsRepository.create(createInstagramPostDto);
+  async create(
+    createInstagramPostDto: CreateInstagramPostDto,
+  ): Promise<InstagramPost> {
+    const instagramPost = this.instagramPostsRepository.create(
+      createInstagramPostDto,
+    );
     return this.instagramPostsRepository.save(instagramPost);
   }
 
@@ -25,7 +29,10 @@ export class InstagramPostsService {
     return this.instagramPostsRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateInstagramPostDto: UpdateInstagramPostDto): Promise<InstagramPost | null> {
+  async update(
+    id: number,
+    updateInstagramPostDto: UpdateInstagramPostDto,
+  ): Promise<InstagramPost | null> {
     await this.instagramPostsRepository.update(id, updateInstagramPostDto);
     return this.findOne(id);
   }

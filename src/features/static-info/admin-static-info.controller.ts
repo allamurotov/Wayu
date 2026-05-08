@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateStaticInfoCommand } from './commands/create-static-info.command';
 import { UpdateStaticInfoCommand } from './commands/update-static-info.command';
@@ -17,7 +25,9 @@ export class AdminStaticInfoController {
 
   @Post()
   create(@Body() createStaticInfoDto: CreateStaticInfoDto) {
-    return this.commandBus.execute(new CreateStaticInfoCommand(createStaticInfoDto));
+    return this.commandBus.execute(
+      new CreateStaticInfoCommand(createStaticInfoDto),
+    );
   }
 
   @Get()
@@ -31,8 +41,13 @@ export class AdminStaticInfoController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStaticInfoDto: UpdateStaticInfoDto) {
-    return this.commandBus.execute(new UpdateStaticInfoCommand(+id, updateStaticInfoDto));
+  update(
+    @Param('id') id: string,
+    @Body() updateStaticInfoDto: UpdateStaticInfoDto,
+  ) {
+    return this.commandBus.execute(
+      new UpdateStaticInfoCommand(+id, updateStaticInfoDto),
+    );
   }
 
   @Delete(':id')

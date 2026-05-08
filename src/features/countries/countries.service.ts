@@ -29,22 +29,29 @@ export class CountriesService {
     return country;
   }
 
-  async update(id: number, updateCountryDto: UpdateCountryDto): Promise<Country> {
-    const existingCountry = await this.countriesRepository.findOne({ where: { id } });
+  async update(
+    id: number,
+    updateCountryDto: UpdateCountryDto,
+  ): Promise<Country> {
+    const existingCountry = await this.countriesRepository.findOne({
+      where: { id },
+    });
     if (!existingCountry) {
       throw new NotFoundException(`Country with ID ${id} not found`);
     }
-    
+
     await this.countriesRepository.update(id, updateCountryDto);
     return this.findOne(id);
   }
 
   async remove(id: number): Promise<void> {
-    const existingCountry = await this.countriesRepository.findOne({ where: { id } });
+    const existingCountry = await this.countriesRepository.findOne({
+      where: { id },
+    });
     if (!existingCountry) {
       throw new NotFoundException(`Country with ID ${id} not found`);
     }
-    
+
     await this.countriesRepository.delete(id);
   }
 }

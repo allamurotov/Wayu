@@ -24,6 +24,8 @@ import { AuthorsModule } from './features/authors/authors.module';
 import { LanguagesModule } from './features/languages/languages.module';
 import { BookCategoriesModule } from './features/book-categories/book-categories.module';
 import { BooksModule } from './features/books/books.module';
+import { DonationsModule } from './features/donations/donations.module';
+import { ExpensesModule } from './features/expenses/expenses.module';
 
 @Module({
   imports: [
@@ -60,6 +62,8 @@ import { BooksModule } from './features/books/books.module';
     LanguagesModule,
     BookCategoriesModule,
     BooksModule,
+    DonationsModule,
+    ExpensesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

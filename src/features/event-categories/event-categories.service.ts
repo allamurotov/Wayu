@@ -12,8 +12,12 @@ export class EventCategoriesService {
     private eventCategoriesRepository: Repository<EventCategory>,
   ) {}
 
-  async create(createEventCategoryDto: CreateEventCategoryDto): Promise<EventCategory> {
-    const eventCategory = this.eventCategoriesRepository.create(createEventCategoryDto);
+  async create(
+    createEventCategoryDto: CreateEventCategoryDto,
+  ): Promise<EventCategory> {
+    const eventCategory = this.eventCategoriesRepository.create(
+      createEventCategoryDto,
+    );
     return this.eventCategoriesRepository.save(eventCategory);
   }
 
@@ -25,7 +29,10 @@ export class EventCategoriesService {
     return this.eventCategoriesRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateEventCategoryDto: UpdateEventCategoryDto): Promise<EventCategory | null> {
+  async update(
+    id: number,
+    updateEventCategoryDto: UpdateEventCategoryDto,
+  ): Promise<EventCategory | null> {
     await this.eventCategoriesRepository.update(id, updateEventCategoryDto);
     return this.findOne(id);
   }

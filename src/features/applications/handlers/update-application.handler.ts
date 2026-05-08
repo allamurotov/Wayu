@@ -12,7 +12,9 @@ export class UpdateApplicationHandler implements ICommandHandler<UpdateApplicati
     private applicationRepository: Repository<Application>,
   ) {}
 
-  async execute(command: UpdateApplicationCommand): Promise<Application | null> {
+  async execute(
+    command: UpdateApplicationCommand,
+  ): Promise<Application | null> {
     const { id, updateApplicationDto } = command;
     await this.applicationRepository.update(id, updateApplicationDto);
     return this.applicationRepository.findOne({ where: { id } });

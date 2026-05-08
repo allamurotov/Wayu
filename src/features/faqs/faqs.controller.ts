@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { FaqsService } from './faqs.service';
 import { CreateFaqDto } from './dto/create-faq.dto';
@@ -12,28 +20,44 @@ export class FaqsController {
 
   @Post()
   @ApiOperation({ summary: 'Create FAQ' })
-  @ApiResponse({ status: 201, description: 'FAQ created successfully', type: Faq })
+  @ApiResponse({
+    status: 201,
+    description: 'FAQ created successfully',
+    type: Faq,
+  })
   create(@Body() createFaqDto: CreateFaqDto) {
     return this.faqsService.create(createFaqDto);
   }
 
   @Get()
   @ApiOperation({ summary: 'Get all FAQs' })
-  @ApiResponse({ status: 200, description: 'FAQs retrieved successfully', type: [Faq] })
+  @ApiResponse({
+    status: 200,
+    description: 'FAQs retrieved successfully',
+    type: [Faq],
+  })
   findAll() {
     return this.faqsService.findAll();
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get FAQ by ID' })
-  @ApiResponse({ status: 200, description: 'FAQ retrieved successfully', type: Faq })
+  @ApiResponse({
+    status: 200,
+    description: 'FAQ retrieved successfully',
+    type: Faq,
+  })
   findOne(@Param('id') id: string) {
     return this.faqsService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update FAQ' })
-  @ApiResponse({ status: 200, description: 'FAQ updated successfully', type: Faq })
+  @ApiResponse({
+    status: 200,
+    description: 'FAQ updated successfully',
+    type: Faq,
+  })
   update(@Param('id') id: string, @Body() updateFaqDto: UpdateFaqDto) {
     return this.faqsService.update(+id, updateFaqDto);
   }

@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { EventCategory } from '../../event-categories/entities/event-category.entity';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('events')
 export class Event {
@@ -23,7 +22,4 @@ export class Event {
 
   @Column({ type: 'varchar', length: 128 })
   address: string;
-
-  @ManyToOne(() => EventCategory, (category) => category.events)
-  category: EventCategory;
 }

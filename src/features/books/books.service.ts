@@ -22,9 +22,9 @@ export class BooksService {
   }
 
   async findOne(id: number): Promise<Book | null> {
-    return this.booksRepository.findOne({ 
-      where: { id }, 
-      relations: ['author', 'category'] 
+    return this.booksRepository.findOne({
+      where: { id },
+      relations: ['author', 'category'],
     });
   }
 

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { UsefulLinksService } from './useful-links.service';
 import { CreateUsefulLinkDto } from './dto/create-useful-link.dto';
 import { UpdateUsefulLinkDto } from './dto/update-useful-link.dto';
@@ -23,7 +31,10 @@ export class AdminUsefulLinksController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUsefulLinkDto: UpdateUsefulLinkDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateUsefulLinkDto: UpdateUsefulLinkDto,
+  ) {
     return this.usefulLinksService.update(+id, updateUsefulLinkDto);
   }
 

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateApplicationCommand } from './commands/create-application.command';
 import { UpdateApplicationCommand } from './commands/update-application.command';
@@ -17,7 +25,9 @@ export class AdminApplicationsController {
 
   @Post()
   create(@Body() createApplicationDto: CreateApplicationDto) {
-    return this.commandBus.execute(new CreateApplicationCommand(createApplicationDto));
+    return this.commandBus.execute(
+      new CreateApplicationCommand(createApplicationDto),
+    );
   }
 
   @Get()
@@ -31,8 +41,13 @@ export class AdminApplicationsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateApplicationDto: UpdateApplicationDto) {
-    return this.commandBus.execute(new UpdateApplicationCommand(+id, updateApplicationDto));
+  update(
+    @Param('id') id: string,
+    @Body() updateApplicationDto: UpdateApplicationDto,
+  ) {
+    return this.commandBus.execute(
+      new UpdateApplicationCommand(+id, updateApplicationDto),
+    );
   }
 
   @Delete(':id')

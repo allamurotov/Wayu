@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Event } from '../../events/entities/event.entity';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('eventCategories')
 export class EventCategory {
@@ -8,7 +7,4 @@ export class EventCategory {
 
   @Column({ type: 'varchar', length: 64, unique: true })
   title: string;
-
-  @OneToMany(() => Event, (event) => event.category)
-  events: Event[];
 }

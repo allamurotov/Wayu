@@ -15,7 +15,7 @@ describe('BookCategoryControllerAdmin (e2e)', () => {
 
   beforeAll(async () => {
     ({ app, dataSource } = await createTestApp());
-    let password = await argon2.hash('12345');
+    const password = await argon2.hash('12345');
     await dataSource.query(`
       INSERT INTO users ("fullName", "login", "loginType", "isVerified", "isActive", "role", "password")
       VALUES ('Solih Coder', 'solihcoder@gmail.com', 'email', true, true, 'superAdmin', '${password}')

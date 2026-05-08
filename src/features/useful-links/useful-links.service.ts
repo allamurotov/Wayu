@@ -25,7 +25,10 @@ export class UsefulLinksService {
     return this.usefulLinksRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateUsefulLinkDto: UpdateUsefulLinkDto): Promise<UsefulLink | null> {
+  async update(
+    id: number,
+    updateUsefulLinkDto: UpdateUsefulLinkDto,
+  ): Promise<UsefulLink | null> {
     await this.usefulLinksRepository.update(id, updateUsefulLinkDto);
     return this.findOne(id);
   }

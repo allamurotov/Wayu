@@ -25,7 +25,10 @@ export class QuestionsService {
     return this.questionsRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateQuestionDto: UpdateQuestionDto): Promise<Question | null> {
+  async update(
+    id: number,
+    updateQuestionDto: UpdateQuestionDto,
+  ): Promise<Question | null> {
     await this.questionsRepository.update(id, updateQuestionDto);
     return this.findOne(id);
   }

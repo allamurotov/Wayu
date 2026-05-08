@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
-import { Tag } from '../../tags/entities/tag.entity';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('faqs')
 export class Faq {
@@ -11,12 +10,4 @@ export class Faq {
 
   @Column({ type: 'varchar', length: 512 })
   answer: string;
-
-  @ManyToMany(() => Tag)
-  @JoinTable({
-    name: 'faqsTags',
-    joinColumn: { name: 'faqId' },
-    inverseJoinColumn: { name: 'tagId' },
-  })
-  tags: Tag[];
 }

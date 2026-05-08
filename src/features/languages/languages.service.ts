@@ -25,7 +25,10 @@ export class LanguagesService {
     return this.languagesRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateLanguageDto: UpdateLanguageDto): Promise<Language | null> {
+  async update(
+    id: number,
+    updateLanguageDto: UpdateLanguageDto,
+  ): Promise<Language | null> {
     await this.languagesRepository.update(id, updateLanguageDto);
     return this.findOne(id);
   }

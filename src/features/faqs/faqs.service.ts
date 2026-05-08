@@ -18,15 +18,15 @@ export class FaqsService {
   }
 
   async findAll(): Promise<Faq[]> {
-    return this.faqsRepository.find({ 
-      relations: ['tags'] 
+    return this.faqsRepository.find({
+      relations: ['tags'],
     });
   }
 
   async findOne(id: number): Promise<Faq | null> {
-    return this.faqsRepository.findOne({ 
-      where: { id }, 
-      relations: ['tags'] 
+    return this.faqsRepository.findOne({
+      where: { id },
+      relations: ['tags'],
     });
   }
 
